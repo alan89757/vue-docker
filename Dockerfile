@@ -1,8 +1,4 @@
-FROM node:14.19.1-slim
-# COPY ./ ./vue-docker
-# WORKDIR /vue-docker
-RUN apt-get update && apt-get install -y git
-RUN npm install -g typescript @vue/cli
-# RUN npm install
-# CMD npm run serve
-
+FROM nginx
+COPY ./dist/ /usr/share/nginx/html/
+COPY ./vhost.nginx.conf /etc/nginx/conf.d/hello-docker.conf
+EXPOSE 80
